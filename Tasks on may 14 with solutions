@@ -1,0 +1,190 @@
+Tasks On May 14
+
+1) Write a program to read a paragraph, and count all the occurrences of each word.
+Program(OccurencesOfWord.java):-
+package org.tasks;
+
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+public class OccurencesOfWord {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		//Reading the paragraph
+		System.out.println("Enter the paragraph");
+		String paragraph=in.nextLine();
+		//Split the paragraph into words
+		String words[] =paragraph.split(" ");
+		Set<String> ss =  new HashSet<String>();
+		//Add the items to set
+		for(int i=0;i<words.length;i++)
+		{
+			ss.add(words[i]);
+		}
+		Iterator<String> iss = ss.iterator();
+		System.out.println("No. of words occured in the paragraph are:");
+		//Iterate each word
+		while(iss.hasNext())
+		{
+			int count =0;
+			String s = iss.next();
+			//Increment the counter how many times word occur in the paragraph
+			for (int j=0;j<words.length;j++)
+			{
+				if(s.equalsIgnoreCase(words[j]))
+				{
+					count++;
+				}
+			}
+			//Display the word and how many times occurred in paragraph
+			if(count>0)
+			{
+				System.out.println(s+" "+count);
+			}
+		}
+		
+	}
+
+}
+
+2) Write a program to find the frequency of each character for a given string.
+Program(Frequency.java):-
+package org.tasks;
+
+import java.util.Scanner;
+
+public class Frequency {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		String s;
+		System.out.println("Enter the string");
+		s=in.next();
+		int len = s.length();
+		int count=0;
+		char ch;
+		System.out.println("Characters  Frequency");
+		for(char i='a';i<'z';i++)
+		{
+			count = 0;
+			for(int j=0;j<len;j++)
+			{
+				ch = s.charAt(j);
+				if(ch==i)
+					count++;
+			}
+			if(count>0)
+			{
+				System.out.println(i+"  \t\t"+count);
+			}
+		}
+
+	}
+
+}
+
+3) Write a program to read input as a sentence and append Z to the left for every word which ends with letter 'e'.( e.g. Input: He has ease and please.  Output is HZe has easZe and pleasZe)
+Program(AddCharacterZ.java):-
+package org.tasks;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class AddCharacterZ {
+
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the String");
+		String s = in.nextLine();
+		String arr[] =s.split(" ");
+		HashMap<Integer , String> hs =  new HashMap<Integer, String>();
+		for(int i=0;i<arr.length;i++)
+		{
+			hs.put(i, arr[i]);
+		}
+		Collection<String> cc =hs.values();
+		Iterator<String> is  =cc.iterator();
+		StringBuffer sb = null;
+		while(is.hasNext())
+		{
+			String sq = is.next();
+			if(sq.endsWith("e"))
+			{
+				for(int i=0;i<sq.length();i++)
+				{
+					char ch = sq.charAt(i);
+					if(ch=='e'&&(sq.length()-i==1))
+					{
+						sb = new StringBuffer();
+						sb.append("Z"+ch);
+					}
+					else
+					{
+						sb = new StringBuffer();
+						sb.append(ch);
+					}
+					System.out.print(sb.toString());
+				}
+			}
+			else
+			{
+				System.out.print(sq);
+			}
+			System.out.print(" ");
+		}
+	}
+
+}
+
+
+4) Write a program to read list of integers and pick all the numbers whose sum of the digits up to last fold is 9.( e.g.: 567=18=9)
+Program(SumLast.java):-
+package org.tasks;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+public class SumLast {
+
+	public int sumOfDigits(int number)
+	{
+		int a=0,sum=0;
+		while(number!=0)
+		{
+			a= number%10;
+			number = number/10;
+			sum = sum+a;
+		}
+		return sum;
+	}
+	public static void main(String[] args) {
+		
+		SumLast sl = new SumLast();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the number");
+		int number =  in .nextInt();
+		Set<Integer> set =  new HashSet<Integer>();
+		//add sum to set
+		set.add(sl.sumOfDigits(number));
+		Iterator<Integer> ii =set.iterator();
+		int b=0,s1=0;
+		//iterate the element in set and perform the operation
+		while(ii.hasNext())
+		{
+			int i =ii.next();
+			s1=sl.sumOfDigits(i);
+		}
+		System.out.println("Sum of the number upto last fold is :" + s1);
+	}
+}
+
