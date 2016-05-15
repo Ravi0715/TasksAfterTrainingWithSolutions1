@@ -89,7 +89,8 @@ public class Frequency {
 
 }
 
-3) Write a program to read input as a sentence and append Z to the left for every word which ends with letter 'e'.( e.g. Input: He has ease and please.  Output is HZe has easZe and pleasZe)
+3) Write a program to read input as a sentence and append Z to the left for every word which ends with letter 'e'.
+( e.g. Input: He has ease and please.  Output is HZe has easZe and pleasZe)
 Program(AddCharacterZ.java):-
 package org.tasks;
 
