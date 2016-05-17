@@ -24,6 +24,7 @@ public class Highest {
 		this.digit = digit;
 	}
 	
+
 }
 
 
@@ -93,5 +94,132 @@ public class HighestNumber {
 			System.out.print(h.getDigit());
 		}
 	}
+
+}
+
+2) Find the longest running positive sequence in an array - 
+
+(Eg - [1,2,-3,2,3,4,-6,1,2,3,4,5,-8,5,6] )
+
+It should return 5, with start index : 1 and ends at 5
+
+Program:-
+
+(LargestPositiveSequence.java)
+
+package org.tasks;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class LargestPositiveSequence {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the size of array");
+		int number = in.nextInt();
+		System.out.println("Enter the elements of array");
+		int a[] = new int[50];
+		for(int i=0;i<number;i++)
+			a[i]=in.nextInt();
+		SortedMap<Integer, List<Integer>> sm = new TreeMap<Integer, List<Integer>>();
+		int count=0;
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i=0;i<number;i++)
+		{
+			if(a[i]>=0)
+			{
+				count++;
+				list.add(a[i]);
+			}
+			else if(a[i]<0)
+			{
+				sm.put(count, list);
+				list = new ArrayList<Integer>();
+				count = 0;
+			}
+			if(i==number-1)
+			{
+				sm.put(count, list);
+				count=0;
+			}
+		}
+		System.out.println("Count:"+sm.lastKey());
+		List<Integer> lii =  sm.get(sm.lastKey());
+		Iterator<Integer> ii =lii.iterator();
+		System.out.print("Largest Positive Sequence is:");
+		while(ii.hasNext())
+		{
+			System.out.print(" "+ii.next());
+		}
+	}
+}
+
+4) Write a program to find duplicate elements in array and total count of duplicate elements. 
+
+(eg. arr={5,3,4,6,7,5,3,2,1} )
+
+Duplicate elements:- 5,3 
+
+Total duplicate count:- 2
+
+Program:-
+
+(DuplicateNumber.java)
+package org.tasks;
+
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
+
+
+public class DuplicateNumber {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the size of array");
+		int number = in.nextInt();
+		System.out.println("Enter the numbers");
+		int a[] = new int[number];
+		for(int i=0;i<number;i++)
+			a[i]=in.nextInt();
+		Hashtable<Integer, Integer> hii = new Hashtable<Integer, Integer>();
+		int count=0;
+		for(int i=0;i<a.length;i++)
+		{
+			int count1=0;
+			int num=a[i];
+			if(hii.containsKey(num))
+			{
+				count1=hii.get(num).intValue();
+				hii.put(num, ++count1);
+			}
+			else
+			{
+				hii.put(num, 1);
+			}
+		}
+		System.out.println("Duplicate elements are:");
+		Set<Entry<Integer, Integer>> seii =hii.entrySet();
+		Iterator<Entry<Integer, Integer>> ieii =seii.iterator();
+		while(ieii.hasNext())
+		{
+			Entry<Integer, Integer> eii =ieii.next();
+			if(eii.getValue()>1)
+			{
+				count++;
+				System.out.println(eii.getKey()+" ");
+			}
+		}
+		System.out.println("Total Duplicate elements count "+count);
+	}
+
 }
 
