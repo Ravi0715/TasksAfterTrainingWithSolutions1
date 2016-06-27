@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<conio.h>
+void insertarr(int loc,int num);
+void deletearr(int loc);
+int a[10],number;
+void display();
+void main()
+{
+	int loc,ch,num;
+	int i,j,count=0;
+	clrscr();
+	printf("Enter the size of array\n");
+	scanf("%d",&number);
+	printf("Enter the elements\n");
+	for(i=0;i<number;i++)
+		scanf("%d",&a[i]);
+	printf("Enter the choice\n1.Insert at beginning\n2.Insert at location\n3.Insert at last\n");
+	printf("4.Delete at start\n5.Delete at location\n6.Delete at last\n7.Search\n8.exit\n");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			printf("Enter element \n");
+			scanf("%d",&num);
+			loc=0;
+			insertarr(loc,num);
+			break;
+		case 2:
+			printf("Enter element and location\n");
+			scanf("%d",&num);
+			scanf("%d",&loc);
+			insertarr(loc,num);
+			break;
+		case 3:
+			printf("enter element\n");
+			scanf("%d",&num);
+			for(i=0;i<=number;i++)
+			{
+				if(a[i]==0)
+				{
+					a[i]=num;
+					break;
+				}
+			}
+			display();
+			break;
+		case 4:
+			loc=0;
+			deletearr(loc);
+			break;
+		case 5:
+			printf("Enter location\n");
+			scanf("%d",&loc);
+			deletearr(loc);
+			break;
+		case 6:
+			for(j=0;j<=number;j++)
+			{
+				if(a[j]==0)
+				{
+					a[j-1]=0;
+					break;
+				}
+			}
+			display();
+			break;
+		case 7:
+			printf("enter element\n");
+			scanf("%d",&num);
+			for(i=0;i<number;i++)
+			{
+				if(a[i]==num)
+				{
+					count=1;
+					break;
+				}
+			}
+			if(count==1)
+				printf("Element is found at %d\n",i);
+			else
+				printf("element not found\n");
+			break;
+		case 8:
+			exit(0);
+	}
+	getch();
+}
+void insertarr(int loc,int num)
+{
+	int i;
+	for(i=number;i>loc;i--)
+	{
+		a[i]=a[i-1];
+	}
+	a[loc]=num;
+	display();
+}
+void deletearr(int loc)
+{
+	int i;
+	for(i=loc;i<number;i++)
+		a[i]=a[i+1];
+	display();
+}
+void display()
+{
+	int i;
+	for(i=0;i<number+1;i++)
+	{
+		if(a[i]==0)
+			break;
+		printf("%d\t",a[i]);
+	}
+	printf("\n");
+}
