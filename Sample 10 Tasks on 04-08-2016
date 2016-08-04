@@ -1,0 +1,242 @@
+Task1: Check biggest number from n numbers without array.
+
+Program:-
+
+#include<stdio.h>
+void main()
+{
+    int i,max=0,num,n;
+    clrscr();
+    printf("Enter the size:");
+    scanf("%d",&n);
+    printf("Enter array elements");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num);
+        if(num>max)
+            max=num;
+    }
+    printf("\n%d\n",max);
+    getch();
+}
+
+Task2: Take a number n, and find the biggest digit in that number. Eg. n=187 then 8 is big number
+
+Program:-
+
+#include<stdio.h>
+void main()
+{
+    int i,max=0,num,n;
+    clrscr();
+    printf("Enter the number:");
+    scanf("%d",&n);
+    while(n!=0)
+    {
+	num=n%10;
+	if(num>max)
+		max=num;
+	n=n/10;
+    }
+    printf("\n%d\n",max);
+    getch();
+}
+
+Task3: Print lowest and highest character from.given n characters.
+
+Program:-
+
+#include<stdio.h>
+void main()
+{
+    int i,n;
+    char ch;int max=0,min=999;
+    clrscr();
+    printf("Enter the size:");
+    scanf("%d",&n);
+    printf("Enter characters\n");
+    for(i=0;i<n;i++)
+    {
+	scanf("%c",&ch);
+	if(ch>max)
+		max=ch;
+	if(ch<min)
+		min=ch;
+    }
+    printf("\n%c\n",(char)max);
+    printf("%c",(char)min);
+    getch();
+}
+
+Task4: Take input as number and convert into words. Eg. n= 125 then, One Two Five
+
+Program:-
+
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+
+	int num,count=0,f=1,digit;
+	clrscr();
+	printf("Enter number:\n");
+	scanf("%d",&num);
+	count=log10(num)+1;
+	f=f*pow(10,count);
+	while(f>1)
+	{
+		f=f/10;
+		digit=num/f;
+		num=num%f;
+		switch(digit)
+		{
+			case 1:
+				printf("One\t");
+				break;
+			case 2:
+				printf("Two\t");
+				break;
+			case 3:
+				printf("Three\t");
+				break;
+			case 4:
+				printf("Four\t");
+				break;
+			case 5:
+				printf("Five\t");
+				break;
+			case 6:
+				printf("Six\t");
+				break;
+			case 7:
+				printf("Seven\t");
+				break;
+			case 8:
+				printf("Eight\n");
+				break;
+			case 9:
+				printf("Nine");
+				break;
+		}
+	}
+}
+
+Task5: Take input as number, and find sum of factorials of each digit. And check that number is same as given input, if so then print it is strong number. Eg. n=145 then, Strong Number bcoz, 1!+4!+5!= 145
+
+Program:-
+
+#include<stdio.h>
+#include<math.h>
+int fact(int n);
+void main()
+{
+
+	int num,count=0,f=1,digit,factsum=0,product,temp;
+	clrscr();
+	printf("Enter number:\n");
+	scanf("%d",&num);
+	temp=num;
+	count=log10(num)+1;
+	f=f*pow(10,count);
+	while(f>1)
+	{
+		f=f/10;
+		digit=num/f;
+		num=num%f;
+		product=fact(digit);
+		factsum=factsum+product;
+	}
+
+	factsum==temp?printf("Strong Number\n"):printf("Not a Strong Number\n");
+	getch();
+}
+int fact(int n)
+{
+	if(n>=1)
+		return n*fact(n-1);
+	else
+		return 1;
+}
+
+Task6: Take input as a character, and print the nth preceeding character. Eg. ch= 'a', n=9 then, ch='j' and if ch='x' n=5 then, ch='c'.
+
+Program:-
+
+#include<stdio.h>
+void main()
+{
+	char ch;
+	int loc;
+	clrscr();
+	printf("Enter the character\n");
+	scanf("%c",&ch);
+	printf("Enter n value\n");
+	scanf("%d",&loc);
+	if((ch+loc)>122)
+		printf("%c",((ch+loc)-26));
+	else
+		printf("%c",(ch+loc));
+	getch();
+}
+
+Task7: Take a given number as n, and convert into binary number. Eg. n=9, then 1001 (decimal to octal).
+
+Program:-
+
+#include<stdio.h>
+void main()
+{
+	int num,i=1,y;
+	int x=0;
+	clrscr();
+	printf("Enter number\n");
+	scanf("%d",&num);
+	while(num!=0)
+	{
+		y=num%2;
+		num=num/2;
+		x+=y*i;
+		i*=10;
+	}
+	printf("%d",x);
+	getch();
+}
+
+Task8: Take a given number as n, and convert into octal number. Eg. n= 130, then 202 is answer
+
+Program:-
+#include<stdio.h>
+void main()
+{
+	int num,i=1,y;
+	int x=0;
+	clrscr();
+	printf("Enter number\n");
+	scanf("%d",&num);
+	while(num!=0)
+	{
+		y=num%8;
+		num=num/8;
+		x+=y*i;
+		i*=10;
+	}
+	printf("%d",x);
+	getch();
+}
+
+Task10: Take input as floating point number, output should be round, floor and ceil value.
+
+Program:-
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+	float num;
+	clrscr();
+	printf("Enter number:");
+	scanf("%f",&num);
+	printf("%.2f\n",num);
+	printf("%f\n",floor(num));
+	printf("%f\n",ceil(num));
+	getch();
+}
